@@ -1,8 +1,0 @@
-************* Module app.main
-app/main.py:26:4: E1111: Assigning result of a function call, where the function has no return (assignment-from-no-return)
-************* Module app.retrieve
-app/retrieve.py:9:0: R0903: Too few public methods (1/2) (too-few-public-methods)
-
-------------------------------------------------------------------
-Your code has been rated at 7.14/10 (previous run: 7.14/10, +0.00)
-

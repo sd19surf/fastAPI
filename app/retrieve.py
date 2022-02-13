@@ -15,8 +15,6 @@ class Retrieve():
     def get_data(self):
         """basic external api call method"""
         url = "https://api.github.com"
-        response = urlopen(url)
-        data_json = json.loads(response.read())
+        with (urlopen(url)) as response:
+            data_json = json.loads(response.read())
         return data_json
-
-
