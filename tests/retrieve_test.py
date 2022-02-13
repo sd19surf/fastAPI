@@ -2,7 +2,6 @@
 retrieve class test
 """
 
-from unittest.mock import Mock, patch
 from app import retrieve
 
 def test_retrieve_init():
@@ -13,5 +12,5 @@ def test_retrieve_init():
 def test_retrieve_method(mock_function, test_data):
     """tests api get function w mock test data"""
     mock_function.return_value = test_data
-    assert retrieve.Retrieve.get_data() == {"id":1,"userId":1}
-
+    test_retrieve = retrieve.Retrieve()
+    assert test_retrieve.get_data() == {"id":1,"userId":1}

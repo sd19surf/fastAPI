@@ -1,21 +1,20 @@
 """ basic main testing routes"""
 
-import json
 from fastapi.testclient import TestClient
-from unittest.mock import Mock, patch
 from app.main import app
-from app import retrieve
+
 
 client = TestClient(app)
 
 def test_read_main():
+    """test root entry for basic return and 200"""
     response = client.get("/")
     assert response.status_code == 200
     assert response.content == b'"hello world"'
 
 def test_read_input_route(icao):
     """test with fixture user input"""
-    response = client.get("/taf/{icao}")
+    response = client.get("/taf/"+icao)
     assert response.status_code == 200
 
 # work on mock patch to fake results
