@@ -1,9 +1,8 @@
 """
 grab some data functions
 """
-
-
-import urllib3
+import json
+from urllib.request import urlopen
 
 
 class Retrieve():
@@ -12,11 +11,12 @@ class Retrieve():
     def __init__(self):
         """initialize with something"""
         self.config = {"test":{"dev":"https://google.com"}}
-        self.get_data()
 
     def get_data(self):
         """basic external api call method"""
-        http = urllib3.PoolManager()
-        url = 'http://dummy.restapiexample.com/api/v1/employee/1'
-        resp = http.request('GET', url)
-        self.data = resp.data.decode('utf-8')
+        url = "https://api.github.com"
+        response = urlopen(url)
+        data_json = json.loads(response.read())
+        return data_json
+
+
