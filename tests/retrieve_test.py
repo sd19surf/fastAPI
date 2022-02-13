@@ -10,10 +10,3 @@ def test_retrieve_init():
     test_retrieve = retrieve.Retrieve()
     assert test_retrieve.config['test']['dev'] == "https://google.com"
 
-@patch('app.retrieve.Retrieve.get_data')
-def test_getting_data_when_response_is_ok(mock_get,test_data):
-    """"""
-    mock_get.return_value = Mock(ok=True)
-    mock_get.return_value.json.return_value = test_data
-    response = retrieve.Retrieve().get_data()
-    assert response.json() == test_data

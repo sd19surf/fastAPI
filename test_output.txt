@@ -7,44 +7,20 @@ collecting ... collected 4 items
 
 tests/main_test.py::test_read_main PASSED                                [ 25%]
 tests/main_test.py::test_read_input_route PASSED                         [ 50%]
-tests/retrieve_test.py::test_retrieve_init PASSED                        [ 75%]
-tests/retrieve_test.py::test_get_data FAILED                             [100%]
-
-=================================== FAILURES ===================================
-________________________________ test_get_data _________________________________
-
-mock_get = <MagicMock name='get_data' id='140546677969968'>
-
-    @patch('app.retrieve.Retrieve.get_data')
-    def test_get_data(mock_get):
-        """ tests the method get_data() """
-        test_data = [{
-            'userId': 1,
-            'id': 1
-        }]
-        mock_get.return_value = Mock(ok=True)
-        mock_get.return_value.json.return_value = test_data
-        test_retrieve = retrieve.Retrieve()
-        response = test_retrieve.data
->       assert response.content == test_data
-E       AssertionError: assert <Mock name='get_data().content' id='140546660394992'> == [{'id': 1, 'userId': 1}]
-E         +<Mock name='get_data().content' id='140546660394992'>
-E         -[{'userId': 1, 'id': 1}]
-
-tests/retrieve_test.py:24: AssertionError
+tests/main_test.py::test_class_implement_route PASSED                    [ 75%]
+tests/retrieve_test.py::test_retrieve_init PASSED                        [100%]
 
 ----------- coverage: platform linux, python 3.9.7-final-0 -----------
 Name                     Stmts   Miss  Cover
 --------------------------------------------
 app/__init__.py              0      0   100%
-app/main.py                 14      3    79%
+app/main.py                 14      0   100%
 app/retrieve.py             10      0   100%
-tests/conftest.py            4      0   100%
-tests/main_test.py          12      0   100%
-tests/retrieve_test.py      14      0   100%
+tests/conftest.py           17      0   100%
+tests/main_test.py          14      0   100%
+tests/retrieve_test.py       5      0   100%
 --------------------------------------------
-TOTAL                       54      3    94%
+TOTAL                       60      0   100%
 
-=========================== short test summary info ============================
-FAILED tests/retrieve_test.py::test_get_data - AssertionError: assert <Mock n...
-========================= 1 failed, 3 passed in 1.33s ==========================
+
+============================== 4 passed in 2.62s ===============================

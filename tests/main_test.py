@@ -21,3 +21,4 @@ def test_class_implement_route(test_data):
     """test retrieve route w class"""
     response = client.get('/test')
     assert response.status_code == 200
+    assert response.content == b'null'
