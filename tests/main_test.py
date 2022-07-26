@@ -1,26 +1,28 @@
 """ basic main testing routes"""
 
 from fastapi.testclient import TestClient
+import pytest
+import os
 from app.main import app
 
 
 client = TestClient(app)
 
-def test_read_main():
-    """test root entry for basic return and 200"""
-    response = client.get("/")
-    assert response.status_code == 200
-    assert response.content == b'"hello world"'
 
-def test_read_input_route(icao):
-    """test with fixture user input"""
-    response = client.get("/taf/"+icao)
-    assert response.status_code == 200
+def test_no_token(mock_env_user_local):
+    response = client.get("/users/me")
+    assert os.getenv('SOLARLUNAR_ENV') == 'local'
+    assert response.status_code == 200, response.text
+    assert response.json() == {"msg": "call logic to run in local env"}
 
-# work on mock patch to fake results
-def test_class_implement_route(mock_function,test_data):
-    """test retrieve route w class"""
-    mock_function.return_value = test_data
-    response = client.get('/test')
-    assert response.status_code == 200
-    assert response.content == b'{"id":1,"userId":1}'
+
+def test_token(mock_env_user_prod):
+    response = client.get("/users/me", headers={"Authorization": "Bearer testtoken"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"token": "testtoken"}
+
+
+def test_incorrect_token(mock_env_user_prod):
+    response = client.get("/users/me", headers={"Authorization": "Notexistent testtoken"})
+    assert response.status_code == 200, response.text
+    assert response.json() == {"token": None}
