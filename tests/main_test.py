@@ -1,7 +1,6 @@
 """ basic main testing routes"""
 
 from fastapi.testclient import TestClient
-import pytest
 import os
 from app.main import app
 

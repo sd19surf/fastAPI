@@ -9,4 +9,4 @@ def mock_env_user_local(monkeypatch):
 
 @pytest.fixture
 def mock_env_user_prod(monkeypatch):
-    monkeypatch.setenv("SOLARLUNAR_ENV", "prod")
+    monkeypatch.setenv("SOLARLUNAR_ENV", "production")
